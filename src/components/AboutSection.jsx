@@ -53,24 +53,6 @@ export default function AboutSection() {
           delay: 0.5
         });
 
-        // Stats counter
-        const stats = document.querySelectorAll('.stat-number');
-        stats.forEach((stat) => {
-          const targetValue = parseInt(stat.getAttribute('data-target'), 10);
-          gsap.fromTo(stat, 
-            { innerText: 0 },
-            {
-              innerText: targetValue,
-              duration: 2.5,
-              ease: 'power3.out',
-              snap: { innerText: 1 },
-              scrollTrigger: {
-                trigger: '.stats-row',
-                start: 'top 85%',
-              }
-            }
-          );
-        });
       }, containerRef);
     }
     return () => ctx && ctx.revert();
@@ -108,22 +90,6 @@ export default function AboutSection() {
               </p>
             </div>
 
-            {/* Stats Row as Floating Capsules */}
-            <div className="stats-row grid grid-cols-2 gap-4 sm:gap-6">
-              {[
-                { num: 500, label: 'Happy Families', color: 'from-wing-green/20 to-wing-blue/20', textColor: 'text-wing-green' },
-                { num: 10, label: 'Years of Excellence', color: 'from-wing-blue/20 to-wing-purple/20', textColor: 'text-wing-blue' },
-                { num: 15, label: 'Trained Educators', color: 'from-wing-orange/20 to-wing-red/20', textColor: 'text-wing-orange' },
-                { num: 6, label: 'Years of Age (Max)', text: '1.5-6', color: 'from-wing-purple/20 to-wing-yellow/20', textColor: 'text-wing-purple' }
-              ].map((stat, idx) => (
-                <div key={idx} className="bg-white/40 backdrop-blur-md border border-white/60 p-5 rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:bg-white/80 transition-colors duration-300 group">
-                  <div className={`text-4xl font-display ${stat.textColor} mb-1 transform group-hover:scale-105 transition-transform origin-left`}>
-                    {stat.text ? stat.text : <><span className="stat-number" data-target={stat.num}>0</span>+</>}
-                  </div>
-                  <div className="text-sm font-heading font-bold text-aquila-navy">{stat.label}</div>
-                </div>
-              ))}
-            </div>
           </div>
 
           {/* Right Column: Cards */}
