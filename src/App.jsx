@@ -1,16 +1,18 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { Helmet } from 'react-helmet-async'
 import Navbar from './components/Navbar'
 import HeroSection from './components/HeroSection'
-import AboutSection from './components/AboutSection'
-import StaffSection from './components/StaffSection'
-import TeacherTrainingSection from './components/TeacherTrainingSection'
-import BandaActivitySection from './components/BandaActivitySection'
-import GallerySection from './components/GallerySection'
-import AdmissionSection from './components/AdmissionSection'
-import ReviewsCarousel from './components/ReviewsCarousel'
-import EnquirySection from './components/EnquirySection'
-import Footer from './components/Footer'
+
+// Lazy load components that are below the fold for speed optimization
+const AboutSection = React.lazy(() => import('./components/AboutSection'))
+const StaffSection = React.lazy(() => import('./components/StaffSection'))
+const TeacherTrainingSection = React.lazy(() => import('./components/TeacherTrainingSection'))
+const BandaActivitySection = React.lazy(() => import('./components/BandaActivitySection'))
+const GallerySection = React.lazy(() => import('./components/GallerySection'))
+const AdmissionSection = React.lazy(() => import('./components/AdmissionSection'))
+const ReviewsCarousel = React.lazy(() => import('./components/ReviewsCarousel'))
+const EnquirySection = React.lazy(() => import('./components/EnquirySection'))
+const Footer = React.lazy(() => import('./components/Footer'))
 
 function App() {
   return (
@@ -28,16 +30,20 @@ function App() {
       <Navbar />
       <main>
         <HeroSection />
-        <AboutSection />
-        <StaffSection />
-        <TeacherTrainingSection />
-        <BandaActivitySection />
-        <GallerySection />
-        <AdmissionSection />
-        <ReviewsCarousel />
-        <EnquirySection />
+        <Suspense fallback={<div className="h-20 flex items-center justify-center"></div>}>
+          <AboutSection />
+          <StaffSection />
+          <TeacherTrainingSection />
+          <BandaActivitySection />
+          <GallerySection />
+          <AdmissionSection />
+          <ReviewsCarousel />
+          <EnquirySection />
+        </Suspense>
       </main>
-      <Footer />
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
     </div>
   )
 }
