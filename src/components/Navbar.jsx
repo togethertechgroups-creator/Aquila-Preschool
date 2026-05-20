@@ -47,8 +47,8 @@ export default function Navbar() {
       <div 
         className={`floating-logo-badge fixed z-50 transition-all duration-300 ${
           isScrolled 
-            ? 'top-3 left-4 md:left-8 bg-white/10 backdrop-blur-xl border border-white/20 shadow-lg rounded-2xl p-2 md:p-3' 
-            : 'top-4 left-4 md:left-8 bg-white/5 backdrop-blur-xl border border-white/10 shadow-lg rounded-2xl p-3 md:p-4'
+            ? 'top-3 left-4 md:left-8 bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-2 md:p-3' 
+            : 'top-4 left-4 md:left-8 bg-white/5 backdrop-blur-sm border border-white/5 rounded-2xl p-3 md:p-4'
         }`}
       >
         <Link to="home" smooth={true} duration={500} offset={-80} className="flex items-center cursor-pointer">
