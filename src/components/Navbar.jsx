@@ -47,15 +47,15 @@ export default function Navbar() {
       <div 
         className={`floating-logo-badge fixed z-50 transition-all duration-300 ${
           isScrolled 
-            ? 'top-3 left-4 md:left-8 bg-white/70 backdrop-blur-md border border-white/50 shadow-md rounded-2xl p-2 md:p-3' 
-            : 'top-4 left-4 md:left-8 bg-white/60 backdrop-blur-md border border-white/40 shadow-md rounded-2xl p-3 md:p-4'
+            ? 'top-3 left-4 md:left-8 bg-white/10 backdrop-blur-xl border border-white/20 shadow-lg rounded-2xl p-2 md:p-3' 
+            : 'top-4 left-4 md:left-8 bg-white/5 backdrop-blur-xl border border-white/10 shadow-lg rounded-2xl p-3 md:p-4'
         }`}
       >
         <Link to="home" smooth={true} duration={500} offset={-80} className="flex items-center cursor-pointer">
           <img 
             src={logo} 
             alt="Aquila Montessori Logo" 
-            className="h-16 md:h-20 w-auto object-contain transition-transform duration-300 hover:scale-105 drop-shadow-sm" 
+            className="h-24 md:h-32 w-auto object-contain transition-transform duration-300 hover:scale-105 drop-shadow-sm" 
             onError={(e) => { e.target.onerror = null; e.target.src = 'https://via.placeholder.com/150x50?text=AQUILA'; }} 
           />
         </Link>
