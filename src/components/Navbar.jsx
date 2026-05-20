@@ -55,7 +55,7 @@ export default function Navbar() {
           <img 
             src={logo} 
             alt="Aquila Montessori Logo" 
-            className="h-24 md:h-32 w-auto object-contain transition-transform duration-300 hover:scale-105 drop-shadow-sm" 
+            className="h-32 md:h-44 w-auto object-contain transition-transform duration-300 hover:scale-105 drop-shadow-sm" 
             onError={(e) => { e.target.onerror = null; e.target.src = 'https://via.placeholder.com/150x50?text=AQUILA'; }} 
           />
         </Link>
