@@ -14,20 +14,18 @@ export default function AboutSection() {
       ctx = gsap.context(() => {
         // Text Entrance
         gsap.from('.about-text', {
-          scrollTrigger: { trigger: containerRef.current, start: 'top 70%' },
           y: 50, opacity: 0, duration: 1, ease: 'power3.out'
         });
 
         // 3D Card Entrance
         gsap.from('.antigravity-card', {
-          scrollTrigger: { trigger: '.cards-container', start: 'top 80%' },
-          y: 120,
-          rotationX: 30,
-          rotationY: -15,
-          z: -100,
+          y: 100,
+          rotationX: 20,
+          rotationY: -10,
+          z: -50,
           opacity: 0,
           duration: 1.2,
-          stagger: 0.3,
+          stagger: 0.25,
           ease: 'back.out(1.2)'
         });
 
@@ -55,7 +53,9 @@ export default function AboutSection() {
 
       }, containerRef);
     }
-    return () => ctx && ctx.revert();
+    return () => {
+      if (ctx) ctx.revert();
+    };
   }, []);
 
   return (
