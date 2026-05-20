@@ -31,9 +31,9 @@ export default function Navbar() {
   useEffect(() => {
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       gsap.fromTo(
-        '.navbar',
-        { y: -50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, delay: 0.2, ease: 'elastic.out(1, 0.5)', clearProps: 'all' }
+        ['.floating-logo-badge', '.floating-nav-pill', '.floating-mobile-toggle'],
+        { y: -100, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1, delay: 0.2, stagger: 0.1, ease: 'power3.out' }
       );
     }
   }, []);
@@ -42,41 +42,35 @@ export default function Navbar() {
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <nav 
-      className={`navbar fixed z-50 transition-all duration-300 flex justify-between items-center ${
-        isScrolled 
-          ? 'top-2 left-0 right-0 mx-auto w-[95%] md:w-[85%] rounded-[3rem] shadow-xl bg-white/90 backdrop-blur-xl border-4 border-wing-yellow/30 py-2 px-6' 
-          : 'top-4 left-4 right-4 rounded-3xl bg-white/80 backdrop-blur-md border border-white/40 shadow-lg py-3 px-6'
-      }`}
-    >
-      {/* Decorative Sparkles for Children when Scrolled */}
-      {isScrolled && (
-        <div className="absolute -top-4 -left-4 animate-float-kid text-wing-orange hidden md:block">
-          <Sparkles size={28} className="fill-wing-orange" />
-        </div>
-      )}
-      {isScrolled && (
-        <div className="absolute -bottom-4 -right-4 animate-float-kid text-wing-blue hidden md:block" style={{ animationDelay: '1s' }}>
-          <Sparkles size={28} className="fill-wing-blue" />
-        </div>
-      )}
-
-      <div className="flex items-center cursor-pointer group relative">
-        <Link to="home" smooth={true} duration={500} offset={-80} className="relative block">
+    <>
+      {/* Floating Logo Badge (Left) */}
+      <div 
+        className={`floating-logo-badge fixed z-50 transition-all duration-300 ${
+          isScrolled 
+            ? 'top-3 left-4 md:left-8 bg-white/70 backdrop-blur-md border border-white/50 shadow-md rounded-2xl p-2 md:p-3' 
+            : 'top-4 left-4 md:left-8 bg-white/60 backdrop-blur-md border border-white/40 shadow-md rounded-2xl p-3 md:p-4'
+        }`}
+      >
+        <Link to="home" smooth={true} duration={500} offset={-80} className="flex items-center cursor-pointer">
           <img 
             src={logo} 
             alt="Aquila Montessori Logo" 
-            className="absolute top-1/2 -translate-y-1/2 left-0 h-[180px] max-w-none object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-md z-10" 
+            className="h-16 md:h-20 w-auto object-contain transition-transform duration-300 hover:scale-105 drop-shadow-sm" 
             onError={(e) => { e.target.onerror = null; e.target.src = 'https://via.placeholder.com/150x50?text=AQUILA'; }} 
           />
-          {/* Spacer to reserve width in the navbar without stretching height */}
-          <div className="h-[100px] w-40"></div>
         </Link>
       </div>
 
-      {/* Desktop Menu */}
-      <div className="hidden md:flex items-center space-x-6">
-        <ul className="flex space-x-6 items-center">
+      {/* Floating Navigation Pill (Center) */}
+      <div 
+        className={`floating-nav-pill fixed z-50 left-1/2 transform -translate-x-1/2 transition-all duration-300 hidden md:flex items-center shadow-lg border border-white/40 ${
+          isScrolled 
+            ? 'top-3 bg-white/90 backdrop-blur-xl rounded-full px-5 py-2' 
+            : 'top-4 bg-white/80 backdrop-blur-lg rounded-full px-6 py-2.5'
+        }`}
+      >
+        {/* Nav Links */}
+        <ul className="flex items-center space-x-6 mr-6">
           {navLinks.map((link) => {
             const Icon = link.icon;
             return (
@@ -88,33 +82,45 @@ export default function Navbar() {
                   offset={-80}
                   duration={500}
                   activeClass={`active font-bold scale-110 ${link.color}`}
-                  className={`cursor-pointer flex items-center text-text-muted hover:${link.color} font-heading font-semibold text-lg transition-all duration-300 rainbow-border-bottom pb-1 group`}
+                  className={`cursor-pointer flex items-center text-text-muted hover:${link.color} font-heading font-semibold text-[15px] transition-all duration-300 pb-0.5 border-b-2 border-transparent hover:border-current group`}
                 >
-                  <Icon size={16} className={`mr-1.5 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300 ${link.color}`} />
+                  <Icon size={14} className={`mr-1.5 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300 ${link.color}`} />
                   {link.name}
                 </Link>
               </li>
             );
           })}
         </ul>
-        <Link to="admissions" smooth={true} duration={500} offset={-80}>
-          <button className="btn-rainbow animate-float-kid shadow-lg shadow-wing-orange/20 border-2 border-white hover-wiggle">
-            Join the Fun! <Sparkles size={16} className="inline ml-1" />
+        
+        {/* Join CTA */}
+        <Link to="admissions" smooth={true} duration={500} offset={-80} className="whitespace-nowrap">
+          <button className="btn-rainbow shadow-md shadow-wing-orange/20 border border-white text-sm py-1.5 px-4 rounded-full font-semibold hover-wiggle whitespace-nowrap">
+            Join the Fun! <Sparkles size={13} className="inline ml-0.5" />
           </button>
         </Link>
       </div>
 
-      {/* Mobile Menu Toggle */}
-      <div className="md:hidden flex items-center">
-        <button onClick={toggleMenu} className="text-aquila-navy focus:outline-none transition-transform active:scale-95">
-          {isOpen ? <X size={32} className="text-wing-red" /> : <Menu size={32} className="text-wing-blue" />}
+      {/* Floating Mobile Toggle (Right) */}
+      <div 
+        className={`floating-mobile-toggle fixed z-50 md:hidden transition-all duration-300 ${
+          isScrolled ? 'top-3 right-4' : 'top-4 right-4'
+        }`}
+      >
+        <button 
+          onClick={toggleMenu} 
+          className="bg-white/80 backdrop-blur-md border border-white/40 shadow-md p-2.5 rounded-2xl text-aquila-navy focus:outline-none transition-all active:scale-95 flex items-center justify-center"
+          aria-label="Toggle menu"
+        >
+          {isOpen ? <X size={26} className="text-wing-red" /> : <Menu size={26} className="text-wing-blue" />}
         </button>
       </div>
 
       {/* Mobile Drawer */}
       <div
-        className={`absolute top-full left-0 right-0 mt-4 bg-white/95 backdrop-blur-xl rounded-3xl border-4 border-wing-yellow/30 p-6 flex flex-col items-center space-y-4 md:hidden transition-all duration-300 transform origin-top shadow-2xl ${
-          isOpen ? 'scale-y-100 opacity-100 visible' : 'scale-y-0 opacity-0 invisible'
+        className={`fixed left-4 right-4 bg-white/95 backdrop-blur-xl rounded-3xl border border-white/40 p-6 flex flex-col items-center space-y-4 md:hidden transition-all duration-300 transform origin-top shadow-2xl z-40 ${
+          isOpen 
+            ? 'top-24 scale-y-100 opacity-100 visible' 
+            : 'top-24 scale-y-0 opacity-0 invisible'
         }`}
       >
         <ul className="flex flex-col items-center space-y-4 w-full">
@@ -130,9 +136,9 @@ export default function Navbar() {
                   duration={500}
                   onClick={closeMenu}
                   activeClass={`font-bold text-xl ${link.color}`}
-                  className={`cursor-pointer flex justify-center items-center text-text-muted hover:${link.color} font-heading font-semibold text-lg block py-2 transition-colors`}
+                  className={`cursor-pointer flex justify-center items-center text-text-muted hover:${link.color} font-heading font-semibold text-lg py-2 transition-colors`}
                 >
-                  <Icon size={20} className={`mr-2 ${link.color}`} />
+                  <Icon size={18} className={`mr-2 ${link.color}`} />
                   {link.name}
                 </Link>
               </li>
@@ -140,9 +146,11 @@ export default function Navbar() {
           })}
         </ul>
         <Link to="admissions" smooth={true} duration={500} offset={-80} onClick={closeMenu} className="w-full">
-          <button className="btn-rainbow w-full mt-4 text-lg border-2 border-white shadow-xl hover-wiggle">Join the Fun! <Sparkles size={20} className="inline ml-1" /></button>
+          <button className="btn-rainbow w-full mt-2 text-md py-2.5 border-2 border-white shadow-xl hover-wiggle">
+            Join the Fun! <Sparkles size={18} className="inline ml-1" />
+          </button>
         </Link>
       </div>
-    </nav>
+    </>
   );
 }
