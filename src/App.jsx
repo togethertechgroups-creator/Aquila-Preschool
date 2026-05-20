@@ -19,11 +19,23 @@ function App() {
     <div className="font-body text-text-dark bg-cream overflow-x-hidden">
       <Helmet>
         <title>Aquila Montessori Pre-School | Sithalapakkam, Chennai</title>
-        <meta name="description" content="Aquila Montessori Pre-School in Sithalapakkam, Chennai — authentic Montessori education for children aged 1.5 to 6 years. Admissions open for 2025–26. Call +91 72000 83468." />
+        <meta name="description" content="Aquila Montessori Pre-School in Sithalapakkam, Chennai offers authentic child-led education for children aged 1.5 to 6. Admissions open for 2025-26. Call now!" />
         <meta name="keywords" content="Montessori preschool Sithalapakkam, best preschool Chennai, Aquila Montessori, Montessori school Chennai, preschool admissions Chennai 2025" />
-        <meta property="og:title" content="Aquila Montessori Pre-School | Where Every Child Learns Their Way" />
-        <meta property="og:description" content="Premier Montessori preschool in Sithalapakkam, Chennai. Enrol your child today." />
+        
+        {/* Open Graph Meta Tags */}
+        <meta property="og:title" content="Aquila Montessori Pre-School | Sithalapakkam, Chennai" />
+        <meta property="og:description" content="Aquila Montessori Pre-School in Sithalapakkam, Chennai offers authentic child-led education for children aged 1.5 to 6. Admissions open for 2025-26. Call now!" />
         <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://aquilamontessori.in" />
+        <meta property="og:image" content="https://aquilamontessori.in/src/assets/hero.jpeg" />
+        <meta property="og:site_name" content="Aquila Montessori Pre-School" />
+
+        {/* Twitter Card Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Aquila Montessori Pre-School | Sithalapakkam, Chennai" />
+        <meta name="twitter:description" content="Aquila Montessori Pre-School in Sithalapakkam, Chennai offers authentic child-led education for children aged 1.5 to 6. Admissions open for 2025-26. Call now!" />
+        <meta name="twitter:image" content="https://aquilamontessori.in/src/assets/hero.jpeg" />
+
         <link rel="canonical" href="https://aquilamontessori.in" />
       </Helmet>
 

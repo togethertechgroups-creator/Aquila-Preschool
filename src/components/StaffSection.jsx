@@ -86,7 +86,7 @@ export default function StaffSection() {
       ctx = gsap.context(() => {
         gsap.from('.staff-card', {
           scrollTrigger: {
-            trigger: '#staff',
+            trigger: containerRef.current,
             start: 'top 85%',
           },
           y: 50,

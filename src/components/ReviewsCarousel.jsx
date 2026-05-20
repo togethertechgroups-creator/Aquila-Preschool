@@ -195,8 +195,8 @@ export default function ReviewsCarousel() {
     let ctx;
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       ctx = gsap.context(() => {
-        gsap.from('.reviews-section .section-header', {
-          scrollTrigger: { trigger: '.reviews-section', start: 'top 80%' },
+        gsap.from('.section-header', {
+          scrollTrigger: { trigger: containerRef.current, start: 'top 80%' },
           y: 40,
           opacity: 0,
           duration: 0.7,

@@ -118,6 +118,7 @@ export default function HeroSection() {
           </div>
           
           <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-6 leading-[1.1] drop-shadow-sm">
+            <span className="sr-only">Aquila Montessori Pre-School in Sithalapakkam, Chennai — </span>
             Nurturing Curious Minds, <br className="hidden lg:block" />
             <span className="rainbow-text block mt-2">One Discovery at a Time</span>
           </h1>
@@ -160,7 +161,7 @@ export default function HeroSection() {
             <div className="absolute inset-0 bg-white rounded-[3rem] opacity-20"></div>
             <img 
               src={heroImg} 
-              alt="Joyful children learning in Montessori environment"
+              alt="Joyful children working with hands-on learning materials at Aquila Montessori Pre-School in Sithalapakkam, Chennai"
               className="w-full h-full object-cover rounded-[2.6rem] border-4 border-white"
               loading="eager"
               decoding="async"

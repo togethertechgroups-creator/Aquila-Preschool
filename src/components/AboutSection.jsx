@@ -93,10 +93,10 @@ export default function AboutSection() {
           </div>
 
           {/* Right Column: Cards */}
-          <div className="lg:col-span-6 grid gap-6 mt-12 lg:mt-0">
+          <div className="lg:col-span-6 grid gap-6 mt-12 lg:mt-0 cards-container">
             
             {/* Vision Card */}
-            <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-lg border border-white/60 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+            <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-lg border border-white/60 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group antigravity-card antigravity-card-1">
               <div className="flex items-center space-x-4 mb-4">
                 <div className="w-12 h-12 bg-gradient-to-br from-wing-blue to-wing-green rounded-2xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
                   <Eye size={24} className="text-white" />
@@ -109,7 +109,7 @@ export default function AboutSection() {
             </div>
 
             {/* Mission Card */}
-            <div className="bg-[#1B2B6B] text-white rounded-3xl p-8 shadow-lg border border-[#1B2B6B]/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group relative overflow-hidden">
+            <div className="bg-[#1B2B6B] text-white rounded-3xl p-8 shadow-lg border border-[#1B2B6B]/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group relative overflow-hidden antigravity-card antigravity-card-2">
               <div className="absolute top-0 right-0 w-32 h-32 bg-wing-orange/20 rounded-full blur-2xl transform translate-x-10 -translate-y-10"></div>
               
               <div className="relative z-10">
