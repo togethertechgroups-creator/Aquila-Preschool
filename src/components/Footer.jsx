@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-scroll';
+import { Facebook, Instagram } from 'lucide-react';
 import logo from '../assets/aquila-logo.png';
 
 export default function Footer() {
@@ -18,6 +19,26 @@ export default function Footer() {
             <p className="text-white/70 text-sm leading-relaxed max-w-xs">
               Nurturing young minds in Sithalapakkam, Chennai through authentic Montessori education since our founding.
             </p>
+            <div className="flex space-x-4 mt-6">
+              <a 
+                href="https://www.facebook.com/share/1GbXhNN15k/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-wing-blue hover:text-white transition-all duration-300 transform hover:scale-110 shadow-sm"
+                aria-label="Facebook"
+              >
+                <Facebook size={20} />
+              </a>
+              <a 
+                href="https://www.instagram.com/aquilamontessoripreschool?utm_source=qr&igsh=MXE0cDNyMXI5MG42aw==" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-wing-orange hover:text-white transition-all duration-300 transform hover:scale-110 shadow-sm"
+                aria-label="Instagram"
+              >
+                <Instagram size={20} />
+              </a>
+            </div>
           </div>
 
           {/* Quick Links */}
