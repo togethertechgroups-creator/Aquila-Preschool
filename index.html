@@ -71,10 +71,48 @@
         ]
       }
     </script>
+    <script>
+      document.documentElement.classList.add('js-enabled');
+    </script>
+    <style>
+      #seo-fallback {
+        display: block;
+      }
+      #loading-spinner {
+        display: none;
+      }
+      .js-enabled #seo-fallback {
+        display: none;
+      }
+      .js-enabled #loading-spinner {
+        display: flex;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #faf8f5;
+        align-items: center;
+        justify-content: center;
+        z-index: 99999;
+      }
+      .spinner {
+        width: 48px;
+        height: 48px;
+        border: 5px solid #1B2B6B;
+        border-top-color: #ff9800;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+    </style>
   </head>
   <body>
     <div id="root">
-      <!-- Semantic SEO Fallback Content for Crawlers & Non-JS Clients -->
+      <div id="seo-fallback">
+        <!-- Semantic SEO Fallback Content for Crawlers & Non-JS Clients -->
       <header>
         <nav>
           <ul>
@@ -146,6 +184,10 @@
       <footer>
         <p>© 2025 Aquila Montessori Pre-School. All Rights Reserved.</p>
       </footer>
+    </div>
+    <div id="loading-spinner">
+      <div class="spinner"></div>
+    </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
     <script type="module" src="/src/main.jsx"></script>
