@@ -9,7 +9,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 const classes = [
   'Phonics',
-  'Comprehension & reading skills',
+  'Comprehension and Grammar',
+  'Public Speaking and Personality Development',
   'Drawing',
   'Abacus',
   'Art & Craft',

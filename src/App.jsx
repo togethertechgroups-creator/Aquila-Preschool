@@ -11,6 +11,7 @@ const BandaActivitySection = React.lazy(() => import('./components/BandaActivity
 const GallerySection = React.lazy(() => import('./components/GallerySection'))
 const AdmissionSection = React.lazy(() => import('./components/AdmissionSection'))
 const ReviewsCarousel = React.lazy(() => import('./components/ReviewsCarousel'))
+const BlogSection = React.lazy(() => import('./components/BlogSection'))
 const EnquirySection = React.lazy(() => import('./components/EnquirySection'))
 const Footer = React.lazy(() => import('./components/Footer'))
 
@@ -50,6 +51,7 @@ function App() {
           <GallerySection />
           <AdmissionSection />
           <ReviewsCarousel />
+          <BlogSection />
           <EnquirySection />
         </Suspense>
       </main>

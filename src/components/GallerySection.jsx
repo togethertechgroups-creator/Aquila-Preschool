@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ChevronLeft, ChevronRight, X, ZoomIn } from 'lucide-react';
+import { ChevronLeft, ChevronRight, X, ZoomIn, LayoutGrid, Sun, PartyPopper, GraduationCap, Palette } from 'lucide-react';
 
 // New images from aquila-gallery folder
 import gal1 from '../assets/aquila-gallery/WhatsApp Image 2026-05-19 at 11.23.34 AM.jpeg';
@@ -19,17 +19,53 @@ import gal12 from '../assets/aquila-gallery/WhatsApp Image 2026-05-19 at 11.34.4
 import gal13 from '../assets/aquila-gallery/WhatsApp Image 2026-05-19 at 11.34.42 AM.jpeg';
 import gal14 from '../assets/aquila-gallery/WhatsApp Image 2026-05-19 at 11.43.05 AM.jpeg';
 import gal15 from '../assets/aquila-gallery/WhatsApp Image 2026-05-19 at 11.43.06 AM.jpeg';
+import gal16 from '../assets/aquila-gallery/WhatsApp Image 2026-05-22 at 2.13.21 PM (1).jpeg';
+import gal17 from '../assets/aquila-gallery/WhatsApp Image 2026-05-22 at 2.13.22 PM (1).jpeg';
+import gal18 from '../assets/aquila-gallery/WhatsApp Image 2026-05-22 at 2.13.23 PM.jpeg';
+import gal19 from '../assets/aquila-gallery/WhatsApp Image 2026-05-22 at 2.13.24 PM.jpeg';
+
+// Images from assets/gallery folder
+import gal20 from '../assets/gallery/WhatsApp Image 2026-05-16 at 11.56.11 AM.jpeg';
+import gal21 from '../assets/gallery/WhatsApp Image 2026-05-16 at 11.56.12 AM (1).jpeg';
+import gal22 from '../assets/gallery/WhatsApp Image 2026-05-16 at 11.56.12 AM.jpeg';
+import gal23 from '../assets/gallery/WhatsApp Image 2026-05-16 at 11.56.13 AM (1).jpeg';
+import gal24 from '../assets/gallery/WhatsApp Image 2026-05-16 at 11.56.13 AM.jpeg';
+import gal25 from '../assets/gallery/WhatsApp Image 2026-05-16 at 11.56.14 AM (1).jpeg';
+import gal26 from '../assets/gallery/WhatsApp Image 2026-05-16 at 11.56.14 AM (2).jpeg';
+import gal27 from '../assets/gallery/WhatsApp Image 2026-05-16 at 11.56.14 AM.jpeg';
+import gal28 from '../assets/gallery/WhatsApp Image 2026-05-16 at 11.56.15 AM.jpeg';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const images = [
-  gal1, gal2, gal3, gal4, gal5, gal6, gal7, gal8, gal9, 
-  gal10, gal11, gal12, gal13, gal14, gal15
+const CATEGORIES = [
+  { name: 'All', icon: LayoutGrid, activeClass: 'bg-wing-blue text-white border-wing-blue shadow-lg shadow-wing-blue/30 scale-105', inactiveClass: 'bg-white text-text-muted border-gray-100 hover:border-wing-blue hover:text-wing-blue hover:shadow-md hover:-translate-y-0.5' },
+  { name: 'Summer camp', icon: Sun, activeClass: 'bg-wing-orange text-white border-wing-orange shadow-lg shadow-wing-orange/30 scale-105', inactiveClass: 'bg-white text-text-muted border-gray-100 hover:border-wing-orange hover:text-wing-orange hover:shadow-md hover:-translate-y-0.5' },
+  { name: 'Celebrations', icon: PartyPopper, activeClass: 'bg-wing-red text-white border-wing-red shadow-lg shadow-wing-red/30 scale-105', inactiveClass: 'bg-white text-text-muted border-gray-100 hover:border-wing-red hover:text-wing-red hover:shadow-md hover:-translate-y-0.5' },
+  { name: 'Teachers training', icon: GraduationCap, activeClass: 'bg-wing-green text-white border-wing-green shadow-lg shadow-wing-green/30 scale-105', inactiveClass: 'bg-white text-text-muted border-gray-100 hover:border-wing-green hover:text-wing-green hover:shadow-md hover:-translate-y-0.5' },
+  { name: 'Drawing', icon: Palette, activeClass: 'bg-wing-purple text-white border-wing-purple shadow-lg shadow-wing-purple/30 scale-105', inactiveClass: 'bg-white text-text-muted border-gray-100 hover:border-wing-purple hover:text-wing-purple hover:shadow-md hover:-translate-y-0.5' }
 ];
+
+const imagesData = [
+  gal5, gal8, gal11,
+  gal1, gal2, gal3, gal4, gal6, gal7, gal9, 
+  gal20, gal21, gal22, gal23, gal24, gal25, gal26, gal27, gal28,
+  gal10, gal12, gal13, gal14, gal15, gal16, gal17, gal18, gal19
+].map((src, index) => {
+  const cats = ['Summer camp', 'Celebrations', 'Teachers training', 'Drawing'];
+  return { src, category: cats[index % cats.length] };
+});
 
 export default function GallerySection() {
   const containerRef = useRef(null);
   const [activePhotoIndex, setActivePhotoIndex] = useState(null);
+  const [showAll, setShowAll] = useState(false);
+  const [activeCategory, setActiveCategory] = useState('All');
+
+  const filteredImages = activeCategory === 'All' 
+    ? imagesData 
+    : imagesData.filter(img => img.category === activeCategory);
+  
+  const displayedImages = showAll ? filteredImages : filteredImages.slice(0, 15);
 
   useEffect(() => {
     let ctx;
@@ -73,11 +109,11 @@ export default function GallerySection() {
   }, [activePhotoIndex]);
 
   const handleNext = () => {
-    setActivePhotoIndex((prev) => (prev + 1) % images.length);
+    setActivePhotoIndex((prev) => (prev + 1) % filteredImages.length);
   };
 
   const handlePrev = () => {
-    setActivePhotoIndex((prev) => (prev - 1 + images.length) % images.length);
+    setActivePhotoIndex((prev) => (prev - 1 + filteredImages.length) % filteredImages.length);
   };
 
   return (
@@ -98,15 +134,39 @@ export default function GallerySection() {
           </p>
         </div>
 
+        {/* Filter Buttons */}
+        <div className="flex flex-wrap justify-center gap-3 mb-10">
+          {CATEGORIES.map(cat => {
+            const isActive = activeCategory === cat.name;
+            const Icon = cat.icon;
+            return (
+              <button
+                key={cat.name}
+                onClick={() => {
+                  setActiveCategory(cat.name);
+                  setShowAll(false);
+                  setTimeout(() => ScrollTrigger.refresh(), 100);
+                }}
+                className={`flex items-center gap-2 px-6 py-2.5 rounded-full font-heading font-bold text-sm transition-all duration-300 border-2 ${
+                  isActive ? cat.activeClass : cat.inactiveClass
+                }`}
+              >
+                <Icon size={16} className={isActive ? 'animate-bounce' : ''} />
+                {cat.name}
+              </button>
+            );
+          })}
+        </div>
+
         <div className="gallery-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {images.map((src, index) => (
+          {displayedImages.map((img, index) => (
             <div
-              key={index}
+              key={`${img.src}-${index}`}
               className="gallery-item relative overflow-hidden rounded-[2rem] bg-gray-50 border-4 border-white shadow-md hover:shadow-xl hover:border-wing-purple/20 transition-all duration-300 cursor-pointer aspect-[4/3]"
               onClick={() => setActivePhotoIndex(index)}
             >
               <img
-                src={src}
+                src={img.src}
                 alt={`Aquila Montessori Gallery ${index + 1}`}
                 className="w-full h-full object-cover"
                 loading="lazy"
@@ -115,6 +175,29 @@ export default function GallerySection() {
             </div>
           ))}
         </div>
+
+        {filteredImages.length > 15 && (
+          <div className="mt-12 flex justify-center">
+            <button
+              onClick={() => {
+                setShowAll(!showAll);
+                // Trigger a refresh for scroll trigger when height changes
+                setTimeout(() => ScrollTrigger.refresh(), 100);
+              }}
+              className="btn-rainbow inline-flex items-center space-x-2 shadow-lg shadow-wing-blue/20 border-2 border-white hover-wiggle px-8 py-3"
+            >
+              <span className="font-heading font-bold">{showAll ? 'Show Less' : 'View More Photos'}</span>
+              <svg 
+                className={`w-5 h-5 transition-transform duration-300 ${showAll ? 'rotate-180' : ''}`} 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Premium Full-screen Lightbox Modal */}
@@ -142,12 +225,12 @@ export default function GallerySection() {
           {/* Center Content */}
           <div className="relative max-w-[90vw] max-h-[80vh] flex flex-col items-center justify-center z-40 select-none">
             <img
-              src={images[activePhotoIndex]}
+              src={filteredImages[activePhotoIndex]?.src}
               alt={`Aquila Gallery Preview`}
               className="max-w-full max-h-[80vh] object-contain rounded-2xl shadow-2xl border-4 border-white/10"
             />
-            <div className="mt-4 text-white/80 font-heading text-sm bg-black/35 px-4 py-1.5 rounded-full backdrop-blur-sm select-none">
-              Photo {activePhotoIndex + 1} of {images.length}
+            <div className="mt-4 text-white/80 font-heading text-sm bg-black/35 px-4 py-1.5 rounded-full backdrop-blur-sm select-none flex items-center space-x-2">
+              <span>{activeCategory !== 'All' ? activeCategory : ''} Photo {activePhotoIndex + 1} of {filteredImages.length}</span>
             </div>
           </div>
 

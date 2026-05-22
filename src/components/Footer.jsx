@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-scroll';
 import logo from '../assets/aquila-logo.png';
+import TermsModal from './TermsModal';
 
 const FacebookIcon = ({ size = 20, className }) => (
   <svg 
@@ -39,6 +40,8 @@ const InstagramIcon = ({ size = 20, className }) => (
 );
 
 export default function Footer() {
+  const [isTermsOpen, setIsTermsOpen] = useState(false);
+
   return (
     <footer className="bg-[#0D1B4B] text-white pt-16 pb-6">
       <div className="container mx-auto px-6">
@@ -93,6 +96,14 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <button
+                  onClick={() => setIsTermsOpen(true)}
+                  className="text-white/70 hover:text-white cursor-pointer transition-colors hover:rainbow-text inline-block text-left"
+                >
+                  Terms & Conditions
+                </button>
+              </li>
             </ul>
           </div>
 
@@ -140,9 +151,20 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row justify-between items-center text-xs text-white/50 text-center md:text-left space-y-2 md:space-y-0">
           <p>© 2025 Aquila Montessori Pre-School. All Rights Reserved.</p>
-          <p>Designed with ❤️ for early learners.</p>
+          <div className="flex items-center space-x-4">
+            <button 
+              onClick={() => setIsTermsOpen(true)}
+              className="hover:text-white transition-colors cursor-pointer"
+            >
+              Terms & Conditions
+            </button>
+            <span className="hidden md:inline">|</span>
+            <p>Designed with ❤️ for early learners.</p>
+          </div>
         </div>
       </div>
+
+      <TermsModal isOpen={isTermsOpen} onClose={() => setIsTermsOpen(false)} />
     </footer>
   );
 }

@@ -32,7 +32,7 @@ export default function EnquirySection() {
       `*Child's Age:* ${formData.childAge}%0A` +
       `*Query:* ${formData.query}`;
       
-    const whatsappUrl = `https://wa.me/919941888840?text=${message}`;
+    const whatsappUrl = `https://wa.me/917200083155?text=${message}`;
     
     // Delay slightly to let the animation be seen before opening a new tab
     setTimeout(() => {

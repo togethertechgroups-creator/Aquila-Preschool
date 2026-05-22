@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { BookOpen, Award, Users, Check, Sparkles, ArrowRight, X } from 'lucide-react';
-import teacherTrainingImg from '../assets/aquila-gallery/teacher.png';
+import teacherTrainingImg from '../assets/aquila-gallery/tt.jpeg';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -137,7 +137,7 @@ export default function TeacherTrainingSection() {
                 <img 
                   src={teacherTrainingImg} 
                   alt="Montessori Teacher Training" 
-                  className="w-full h-auto rounded-[2rem] object-cover aspect-[4/5]"
+                  className="w-[90%] mx-auto h-auto max-h-[450px] rounded-[2rem] object-contain"
                 />
                 
                 {/* Floating Badge */}
