@@ -136,8 +136,8 @@ export default function Footer() {
               </p>
               <p className="flex items-start">
                 <span className="mr-2">📧</span>
-                <a href="mailto:Aquilamontessoripreschool@gmail.com" className="hover:text-white transition-colors break-all">
-                  Aquilamontessoripreschool@gmail.com
+                <a href="mailto:aquilamontessoripreschool@gmail.com" className="hover:text-white transition-colors break-all">
+                  aquilamontessoripreschool@gmail.com
                 </a>
               </p>
             </div>
@@ -150,7 +150,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row justify-between items-center text-xs text-white/50 text-center md:text-left space-y-2 md:space-y-0">
-          <p>© 2025 Aquila Montessori Pre-School. All Rights Reserved.</p>
+          <p>© 2026 Aquila Montessori Pre-School. All Rights Reserved.</p>
           <div className="flex items-center space-x-4">
             <button 
               onClick={() => setIsTermsOpen(true)}

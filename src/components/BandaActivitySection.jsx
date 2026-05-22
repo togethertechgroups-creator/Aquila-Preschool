@@ -16,7 +16,6 @@ const classes = [
   'Art & Craft',
   'Piano',
   'Handwriting',
-  'Spoken English',
   'Summer Camp Activities',
 ];
 

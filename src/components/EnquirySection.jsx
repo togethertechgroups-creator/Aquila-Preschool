@@ -114,8 +114,8 @@ export default function EnquirySection() {
               </div>
               <div>
                 <h4 className="font-heading font-bold text-lg mb-1 text-aquila-navy">Email</h4>
-                <a href="mailto:Aquilamontessoripreschool@gmail.com" className="font-semibold text-aquila-navy hover:text-wing-blue transition-colors break-all">
-                  Aquilamontessoripreschool@gmail.com
+                <a href="mailto:aquilamontessoripreschool@gmail.com" className="font-semibold text-aquila-navy hover:text-wing-blue transition-colors break-all">
+                  aquilamontessoripreschool@gmail.com
                 </a>
               </div>
             </div>

@@ -61,12 +61,12 @@ export default function Navbar() {
         </div>
       )}
 
-      <div className={`fixed left-0 -top-4 md:left-2 md:-top-6 flex items-center cursor-pointer group pointer-events-auto z-50 transition-opacity duration-300 ${isScrolled ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+      <div className={`fixed left-0 top-2 md:left-2 md:-top-6 flex items-center cursor-pointer group pointer-events-auto z-50 transition-opacity duration-300 ${isScrolled ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
         <Link to="home" smooth={true} duration={500} offset={-80} className="relative block">
           <img
             src={logo}
             alt="Aquila Montessori Logo"
-            className="h-[100px] lg:h-[130px] xl:h-[160px] max-w-none object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-md"
+            className="h-[190px] lg:h-[200px] xl:h-[230px] max-w-none object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-md"
             onError={(e) => { e.target.onerror = null; e.target.src = 'https://via.placeholder.com/150x50?text=AQUILA'; }}
           />
         </Link>

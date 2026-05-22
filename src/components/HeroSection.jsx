@@ -145,7 +145,7 @@ export default function HeroSection() {
 
           <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-3 sm:space-y-0 sm:space-x-4 text-sm font-heading font-bold text-aquila-navy">
             <span className="bg-white px-5 py-3 rounded-full shadow-sm border border-wing-blue/20 flex items-center">
-              <span className="bg-wing-blue/20 p-1 rounded-full mr-2">🎓</span> Admissions Open 2025–26
+              <span className="bg-wing-blue/20 p-1 rounded-full mr-2">🎓</span> Admissions Open 2026–27
             </span>
             <span className="bg-white px-5 py-3 rounded-full shadow-sm border border-wing-green/20 flex items-center">
               <span className="bg-wing-green/20 p-1 rounded-full mr-2">📍</span> Sithalapakkam, Chennai
