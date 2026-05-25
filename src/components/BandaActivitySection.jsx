@@ -97,15 +97,15 @@ export default function BandaActivitySection() {
               </span>
             </div>
             
+            <h2 className="text-4xl md:text-5xl mb-4 leading-[1.1] text-wing-red font-display">
+              The Activity Hub
+            </h2>
+            
             <img 
               src={pandaLogo} 
               alt="BANDA Logo" 
-              className="max-w-[280px] w-full h-auto object-contain mb-2 mix-blend-multiply cursor-pointer transition-transform duration-300 hover-wiggle hover:scale-110" 
+              className="max-w-[280px] w-full h-auto object-contain mb-6 mix-blend-multiply cursor-pointer transition-transform duration-300 hover-wiggle hover:scale-110" 
             />
-            
-            <h2 className="text-4xl md:text-5xl mb-6 leading-[1.1] text-wing-red font-display">
-              The Activity Hub
-            </h2>
             
             <p className="text-text-muted text-lg leading-relaxed mb-4">
               BANDA – the Activity Hub is a forerunner in engaging children in activities beyond the classroom having been established in the year 2016. At BANDA, we believe learning goes beyond the classroom. We offer engaging and skill-based after-school activities for children above 3 years in a fun, safe and encouraging environment.

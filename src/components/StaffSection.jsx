@@ -59,7 +59,7 @@ const staff = [
     bio: (
       <div className="space-y-4 text-left pr-1">
         <p className="text-text-muted text-sm leading-relaxed">
-          I, <strong>Annie Lavanya George</strong>, Coordinator of AQUILA Montessori Pre-School, am passionate about creating a nurturing and inspiring environment where children feel safe, valued, and encouraged to explore their unique potential. With a deep love for early childhood education, my focus is on guiding children to develop confidence, independence, creativity, and a lifelong love for learning through the Montessori approach.
+          <strong>Annie Lavanya George</strong>, Coordinator of AQUILA Montessori Pre-School, is passionate about creating a nurturing and inspiring environment where children feel safe, valued, and encouraged to explore their unique potential. With a deep love for early childhood education, her focus is on guiding children to develop confidence, independence, creativity, and a lifelong love for learning through the Montessori approach.
         </p>
         <p className="text-text-muted text-sm leading-relaxed">
           At AQUILA, we strive to support every child’s holistic growth by providing meaningful learning experiences in a joyful, child-centered atmosphere filled with care, respect, and encouragement.
@@ -249,7 +249,7 @@ export default function StaffSection() {
                     </div>
                     
                     <p className="text-text-muted text-sm leading-relaxed italic text-center max-w-[320px] px-2 mb-6">
-                      "{person.teaser}"
+                      {person.teaser}
                     </p>
                   </div>
 

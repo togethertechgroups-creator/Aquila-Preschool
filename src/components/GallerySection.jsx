@@ -1,39 +1,59 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ChevronLeft, ChevronRight, X, ZoomIn, LayoutGrid, Sun, PartyPopper, GraduationCap, Palette } from 'lucide-react';
+import { ChevronLeft, ChevronRight, X, ZoomIn, LayoutGrid, Sun, PartyPopper, GraduationCap, Palette, BookOpen } from 'lucide-react';
 
-// New images from aquila-gallery folder
-import gal1 from '../assets/aquila-gallery/WhatsApp Image 2026-05-19 at 11.23.34 AM.jpeg';
-import gal2 from '../assets/aquila-gallery/WhatsApp Image 2026-05-19 at 11.23.35 AM (1).jpeg';
-import gal3 from '../assets/aquila-gallery/WhatsApp Image 2026-05-19 at 11.23.35 AM (2).jpeg';
-import gal4 from '../assets/aquila-gallery/WhatsApp Image 2026-05-19 at 11.23.35 AM.jpeg';
-import gal5 from '../assets/aquila-gallery/WhatsApp Image 2026-05-19 at 11.23.36 AM (1).jpeg';
-import gal6 from '../assets/aquila-gallery/WhatsApp Image 2026-05-19 at 11.23.36 AM (2).jpeg';
-import gal7 from '../assets/aquila-gallery/WhatsApp Image 2026-05-19 at 11.23.36 AM.jpeg';
-import gal8 from '../assets/aquila-gallery/WhatsApp Image 2026-05-19 at 11.23.37 AM (1).jpeg';
-import gal9 from '../assets/aquila-gallery/WhatsApp Image 2026-05-19 at 11.23.37 AM.jpeg';
-import gal10 from '../assets/aquila-gallery/WhatsApp Image 2026-05-19 at 11.34.41 AM (1).jpeg';
-import gal11 from '../assets/aquila-gallery/WhatsApp Image 2026-05-19 at 11.34.41 AM.jpeg';
-import gal12 from '../assets/aquila-gallery/WhatsApp Image 2026-05-19 at 11.34.42 AM (1).jpeg';
-import gal13 from '../assets/aquila-gallery/WhatsApp Image 2026-05-19 at 11.34.42 AM.jpeg';
-import gal14 from '../assets/aquila-gallery/WhatsApp Image 2026-05-19 at 11.43.05 AM.jpeg';
-import gal15 from '../assets/aquila-gallery/WhatsApp Image 2026-05-19 at 11.43.06 AM.jpeg';
-import gal16 from '../assets/aquila-gallery/WhatsApp Image 2026-05-22 at 2.13.21 PM (1).jpeg';
-import gal17 from '../assets/aquila-gallery/WhatsApp Image 2026-05-22 at 2.13.22 PM (1).jpeg';
-import gal18 from '../assets/aquila-gallery/WhatsApp Image 2026-05-22 at 2.13.23 PM.jpeg';
-import gal19 from '../assets/aquila-gallery/WhatsApp Image 2026-05-22 at 2.13.24 PM.jpeg';
+// Summer camp specific images
+import sc1 from '../assets/summer camp/WhatsApp Image 2026-05-23 at 8.54.26 AM.jpeg';
+import sc2 from '../assets/summer camp/WhatsApp Image 2026-05-23 at 8.54.27 AM.jpeg';
+import sc3 from '../assets/summer camp/WhatsApp Image 2026-05-23 at 8.54.28 AM.jpeg';
+import sc4 from '../assets/summer camp/WhatsApp Image 2026-05-23 at 8.54.29 AM.jpeg';
 
-// Images from assets/gallery folder
-import gal20 from '../assets/gallery/WhatsApp Image 2026-05-16 at 11.56.11 AM.jpeg';
-import gal21 from '../assets/gallery/WhatsApp Image 2026-05-16 at 11.56.12 AM (1).jpeg';
-import gal22 from '../assets/gallery/WhatsApp Image 2026-05-16 at 11.56.12 AM.jpeg';
-import gal23 from '../assets/gallery/WhatsApp Image 2026-05-16 at 11.56.13 AM (1).jpeg';
-import gal24 from '../assets/gallery/WhatsApp Image 2026-05-16 at 11.56.13 AM.jpeg';
-import gal25 from '../assets/gallery/WhatsApp Image 2026-05-16 at 11.56.14 AM (1).jpeg';
-import gal26 from '../assets/gallery/WhatsApp Image 2026-05-16 at 11.56.14 AM (2).jpeg';
-import gal27 from '../assets/gallery/WhatsApp Image 2026-05-16 at 11.56.14 AM.jpeg';
-import gal28 from '../assets/gallery/WhatsApp Image 2026-05-16 at 11.56.15 AM.jpeg';
+// Celebration specific images
+import cel1 from '../assets/celebration/WhatsApp Image 2026-05-23 at 8.58.57 AM.jpeg';
+import cel2 from '../assets/celebration/WhatsApp Image 2026-05-23 at 8.58.58 AM.jpeg';
+import cel3 from '../assets/celebration/WhatsApp Image 2026-05-23 at 8.58.59 AM.jpeg';
+import cel4 from '../assets/celebration/WhatsApp Image 2026-05-23 at 8.59.00 AM.jpeg';
+import cel5 from '../assets/celebration/WhatsApp Image 2026-05-23 at 8.59.01 AM.jpeg';
+import cel6 from '../assets/celebration/WhatsApp Image 2026-05-23 at 8.59.02 AM.jpeg';
+import cel7 from '../assets/celebration/WhatsApp Image 2026-05-23 at 8.59.03 AM.jpeg';
+import cel8 from '../assets/celebration/WhatsApp Image 2026-05-23 at 8.59.04 AM.jpeg';
+import cel9 from '../assets/celebration/WhatsApp Image 2026-05-23 at 8.59.05 AM (1).jpeg';
+import cel10 from '../assets/celebration/WhatsApp Image 2026-05-23 at 8.59.05 AM.jpeg';
+
+// Teacher training specific images
+import tt1 from '../assets/teacher training/WhatsApp Image 2026-05-23 at 8.55.38 AM (1).jpeg';
+import tt2 from '../assets/teacher training/WhatsApp Image 2026-05-23 at 8.55.38 AM (2).jpeg';
+import tt3 from '../assets/teacher training/WhatsApp Image 2026-05-23 at 8.55.38 AM.jpeg';
+import tt4 from '../assets/teacher training/WhatsApp Image 2026-05-23 at 8.55.40 AM (1).jpeg';
+import tt5 from '../assets/teacher training/WhatsApp Image 2026-05-23 at 8.55.40 AM.jpeg';
+
+// Drawing specific images
+import dr1 from '../assets/drawing/WhatsApp Image 2026-05-23 at 8.52.44 AM.jpeg';
+import dr2 from '../assets/drawing/WhatsApp Image 2026-05-23 at 8.52.45 AM (1).jpeg';
+import dr3 from '../assets/drawing/WhatsApp Image 2026-05-23 at 8.52.45 AM (2).jpeg';
+import dr4 from '../assets/drawing/WhatsApp Image 2026-05-23 at 8.52.45 AM.jpeg';
+import dr5 from '../assets/drawing/WhatsApp Image 2026-05-23 at 8.52.46 AM (1).jpeg';
+import dr6 from '../assets/drawing/WhatsApp Image 2026-05-23 at 8.52.46 AM (2).jpeg';
+import dr7 from '../assets/drawing/WhatsApp Image 2026-05-23 at 8.52.46 AM (3).jpeg';
+import dr8 from '../assets/drawing/WhatsApp Image 2026-05-23 at 8.52.46 AM.jpeg';
+import dr9 from '../assets/drawing/WhatsApp Image 2026-05-23 at 8.52.47 AM.jpeg';
+
+// Academic specific images
+import ac1 from '../assets/acadamic/WhatsApp Image 2026-05-23 at 8.57.21 AM.jpeg';
+import ac2 from '../assets/acadamic/WhatsApp Image 2026-05-23 at 8.57.22 AM (1).jpeg';
+import ac3 from '../assets/acadamic/WhatsApp Image 2026-05-23 at 8.57.22 AM.jpeg';
+import ac4 from '../assets/acadamic/WhatsApp Image 2026-05-23 at 8.57.23 AM.jpeg';
+import ac5 from '../assets/acadamic/WhatsApp Image 2026-05-23 at 8.57.24 AM.jpeg';
+import ac6 from '../assets/acadamic/WhatsApp Image 2026-05-23 at 8.57.25 AM (1).jpeg';
+import ac7 from '../assets/acadamic/WhatsApp Image 2026-05-23 at 8.57.25 AM.jpeg';
+import ac8 from '../assets/acadamic/WhatsApp Image 2026-05-23 at 8.57.26 AM (1).jpeg';
+import ac9 from '../assets/acadamic/WhatsApp Image 2026-05-23 at 8.57.26 AM.jpeg';
+import ac10 from '../assets/acadamic/WhatsApp Image 2026-05-23 at 8.57.27 AM (1).jpeg';
+import ac11 from '../assets/acadamic/WhatsApp Image 2026-05-23 at 8.57.27 AM.jpeg';
+import ac12 from '../assets/acadamic/WhatsApp Image 2026-05-23 at 8.57.28 AM (1).jpeg';
+import ac13 from '../assets/acadamic/WhatsApp Image 2026-05-23 at 8.57.28 AM.jpeg';
+import ac14 from '../assets/acadamic/WhatsApp Image 2026-05-23 at 8.57.29 AM.jpeg';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -42,18 +62,63 @@ const CATEGORIES = [
   { name: 'Summer camp', icon: Sun, activeClass: 'bg-wing-orange text-white border-wing-orange shadow-lg shadow-wing-orange/30 scale-105', inactiveClass: 'bg-white text-text-muted border-gray-100 hover:border-wing-orange hover:text-wing-orange hover:shadow-md hover:-translate-y-0.5' },
   { name: 'Celebrations', icon: PartyPopper, activeClass: 'bg-wing-red text-white border-wing-red shadow-lg shadow-wing-red/30 scale-105', inactiveClass: 'bg-white text-text-muted border-gray-100 hover:border-wing-red hover:text-wing-red hover:shadow-md hover:-translate-y-0.5' },
   { name: 'Teachers training', icon: GraduationCap, activeClass: 'bg-wing-green text-white border-wing-green shadow-lg shadow-wing-green/30 scale-105', inactiveClass: 'bg-white text-text-muted border-gray-100 hover:border-wing-green hover:text-wing-green hover:shadow-md hover:-translate-y-0.5' },
-  { name: 'Drawing', icon: Palette, activeClass: 'bg-wing-purple text-white border-wing-purple shadow-lg shadow-wing-purple/30 scale-105', inactiveClass: 'bg-white text-text-muted border-gray-100 hover:border-wing-purple hover:text-wing-purple hover:shadow-md hover:-translate-y-0.5' }
+  { name: 'Drawing', icon: Palette, activeClass: 'bg-wing-purple text-white border-wing-purple shadow-lg shadow-wing-purple/30 scale-105', inactiveClass: 'bg-white text-text-muted border-gray-100 hover:border-wing-purple hover:text-wing-purple hover:shadow-md hover:-translate-y-0.5' },
+  { name: 'Academic', icon: BookOpen, activeClass: 'bg-wing-yellow text-white border-wing-yellow shadow-lg shadow-wing-yellow/30 scale-105', inactiveClass: 'bg-white text-text-muted border-gray-100 hover:border-wing-yellow hover:text-wing-yellow hover:shadow-md hover:-translate-y-0.5' }
 ];
 
 const imagesData = [
-  gal5, gal8, gal11,
-  gal1, gal2, gal3, gal4, gal6, gal7, gal9, 
-  gal20, gal21, gal22, gal23, gal24, gal25, gal26, gal27, gal28,
-  gal10, gal12, gal13, gal14, gal15, gal16, gal17, gal18, gal19
-].map((src, index) => {
-  const cats = ['Summer camp', 'Celebrations', 'Teachers training', 'Drawing'];
-  return { src, category: cats[index % cats.length] };
-});
+  // Dedicated Summer camp category images
+  { src: sc1, category: 'Summer camp' },
+  { src: sc2, category: 'Summer camp' },
+  { src: sc3, category: 'Summer camp' },
+  { src: sc4, category: 'Summer camp' },
+
+  // Dedicated Celebrations category images
+  { src: cel1, category: 'Celebrations' },
+  { src: cel2, category: 'Celebrations' },
+  { src: cel3, category: 'Celebrations' },
+  { src: cel4, category: 'Celebrations' },
+  { src: cel5, category: 'Celebrations' },
+  { src: cel6, category: 'Celebrations' },
+  { src: cel7, category: 'Celebrations' },
+  { src: cel8, category: 'Celebrations' },
+  { src: cel9, category: 'Celebrations' },
+  { src: cel10, category: 'Celebrations' },
+
+  // Dedicated Teachers training category images
+  { src: tt1, category: 'Teachers training' },
+  { src: tt2, category: 'Teachers training' },
+  { src: tt3, category: 'Teachers training' },
+  { src: tt4, category: 'Teachers training' },
+  { src: tt5, category: 'Teachers training' },
+
+  // Dedicated Drawing category images
+  { src: dr1, category: 'Drawing' },
+  { src: dr2, category: 'Drawing' },
+  { src: dr3, category: 'Drawing' },
+  { src: dr4, category: 'Drawing' },
+  { src: dr5, category: 'Drawing' },
+  { src: dr6, category: 'Drawing' },
+  { src: dr7, category: 'Drawing' },
+  { src: dr8, category: 'Drawing' },
+  { src: dr9, category: 'Drawing' },
+
+  // Dedicated Academic category images
+  { src: ac1, category: 'Academic' },
+  { src: ac2, category: 'Academic' },
+  { src: ac3, category: 'Academic' },
+  { src: ac4, category: 'Academic' },
+  { src: ac5, category: 'Academic' },
+  { src: ac6, category: 'Academic' },
+  { src: ac7, category: 'Academic' },
+  { src: ac8, category: 'Academic' },
+  { src: ac9, category: 'Academic' },
+  { src: ac10, category: 'Academic' },
+  { src: ac11, category: 'Academic' },
+  { src: ac12, category: 'Academic' },
+  { src: ac13, category: 'Academic' },
+  { src: ac14, category: 'Academic' }
+];
 
 export default function GallerySection() {
   const containerRef = useRef(null);
