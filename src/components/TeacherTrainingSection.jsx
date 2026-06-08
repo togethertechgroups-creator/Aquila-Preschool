@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { BookOpen, Award, Users, Check, Sparkles, ArrowRight, X } from 'lucide-react';
-import teacherTrainingImg from '../assets/aquila-gallery/tt.jpeg';
+import teacherTrainingImg from '../assets/teacher_training.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
