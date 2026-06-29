@@ -15,6 +15,29 @@ const rootMap = import.meta.glob('../assets/*.{jpeg,jpg,png,mp4}', { eager: true
 
 const mapToObjects = (mapObj, category) => Object.values(mapObj).map(src => ({ src, category }));
 
+const EXCLUDED_FILES = [
+  'panda activity.png',
+  'aquila-logo',
+  'aquila-logo1.png',
+  'kids-park.png',
+  'staff_bg.png',
+  'hero.jpeg',
+  'hero.png',
+  'aniee.jpeg',
+  'deepa.jpeg',
+  'teacher_training.png',
+  'panda.jpeg',
+  'react.svg',
+  'vite.svg',
+  'WhatsApp Image 2026-05-23 at 8.54.26 AM.jpeg',
+  'WhatsApp Image 2026-05-23 at 8.54.27 AM.jpeg',
+  'WhatsApp Image 2026-06-04 at 12.24.50 PM (1).jpeg',
+  'WhatsApp Image 2026-06-04 at 12.24.50 PM (2).jpeg',
+  'WhatsApp Image 2026-06-04 at 12.24.50 PM.jpeg',
+  'WhatsApp Image 2026-06-04 at 12.24.51 PM (1).jpeg',
+  'WhatsApp Image 2026-06-04 at 12.24.51 PM (2).jpeg'
+];
+
 const imagesData = [
   ...mapToObjects(scImagesMap, 'Summer camp'),
   ...mapToObjects(celImagesMap, 'Celebrations'),
@@ -25,23 +48,8 @@ const imagesData = [
   ...mapToObjects(aquilaGalleryMap, 'Campus'),
   ...mapToObjects(rootMap, 'Campus'),
 ].filter(item => {
-  // Exclude images that are specifically used in other components
   const srcStr = item.src || '';
-  if (
-    srcStr.includes('panda activity.png') || 
-    srcStr.includes('aquila-logo') || 
-    srcStr.includes('kids-park.png') || 
-    srcStr.includes('staff_bg.png') || 
-    srcStr.includes('hero.jpeg') || 
-    srcStr.includes('hero.png') ||
-    srcStr.includes('aniee.jpeg') || 
-    srcStr.includes('deepa.jpeg') || 
-    srcStr.includes('teacher_training.png') ||
-    srcStr.includes('panda.jpeg')
-  ) {
-    return false;
-  }
-  return true;
+  return !EXCLUDED_FILES.some(excluded => srcStr.includes(excluded));
 });
 
 const isVideo = (src) => src && src.endsWith('.mp4');
