@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-scroll';
-import { Menu, X, Sparkles, Home, Info, Image as ImageIcon, GraduationCap, Star, Phone, BookOpen, FileText } from 'lucide-react';
+import { Menu, X, Sparkles, Home, Info, Image as ImageIcon, Star, Phone, BookOpen, FileText } from 'lucide-react';
 import gsap from 'gsap';
 import logo from '../assets/aquila-logo.png';
 

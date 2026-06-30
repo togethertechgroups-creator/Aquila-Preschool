@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { Link } from 'react-scroll';
 import gsap from 'gsap';
 import { ArrowDown, Star, Cloud, Sun, Heart, Sparkles, Rainbow } from 'lucide-react';

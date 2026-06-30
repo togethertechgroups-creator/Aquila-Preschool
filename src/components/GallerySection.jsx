@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ChevronLeft, ChevronRight, X, ZoomIn, LayoutGrid, Sun, PartyPopper, GraduationCap, Palette, BookOpen, Camera } from 'lucide-react';
+import { ChevronLeft, ChevronRight, X, LayoutGrid, Sun, PartyPopper, GraduationCap, Palette, BookOpen, Camera } from 'lucide-react';
 
 // Import all media dynamically using Vite's import.meta.glob
 const scImagesMap = import.meta.glob('../assets/summer camp/*.{jpeg,jpg,png,mp4}', { eager: true, import: 'default' });
@@ -54,7 +54,7 @@ const imagesData = [
 
 const isVideo = (src) => src && src.endsWith('.mp4');
 
-export const renderMedia = (src, alt, className) => {
+const renderMedia = (src, alt, className) => {
   if (isVideo(src)) {
     return (
       <video
@@ -118,6 +118,14 @@ export default function GallerySection() {
     return () => ctx && ctx.revert();
   }, []);
 
+  const handleNext = useCallback(() => {
+    setActivePhotoIndex((prev) => (prev + 1) % filteredImages.length);
+  }, [filteredImages.length]);
+
+  const handlePrev = useCallback(() => {
+    setActivePhotoIndex((prev) => (prev - 1 + filteredImages.length) % filteredImages.length);
+  }, [filteredImages.length]);
+
   // Handle Keyboard Navigation for Lightbox
   useEffect(() => {
     if (activePhotoIndex === null) return;
@@ -130,15 +138,7 @@ export default function GallerySection() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [activePhotoIndex]);
-
-  const handleNext = () => {
-    setActivePhotoIndex((prev) => (prev + 1) % filteredImages.length);
-  };
-
-  const handlePrev = () => {
-    setActivePhotoIndex((prev) => (prev - 1 + filteredImages.length) % filteredImages.length);
-  };
+  }, [activePhotoIndex, handleNext, handlePrev]);
 
   const CATEGORIES = [
   { name: 'All', icon: LayoutGrid, activeClass: 'bg-wing-blue text-white border-wing-blue shadow-lg shadow-wing-blue/30 scale-105', inactiveClass: 'bg-white text-text-muted border-gray-100 hover:border-wing-blue hover:text-wing-blue hover:shadow-md hover:-translate-y-0.5' },

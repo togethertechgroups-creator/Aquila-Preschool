@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 const TermsModal = ({ isOpen, onClose }) => {
   // Prevent body scrolling when modal is open

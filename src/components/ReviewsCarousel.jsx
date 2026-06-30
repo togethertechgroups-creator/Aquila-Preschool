@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useRef } from 'react';
+import { useEffect, useCallback, useRef } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 import gsap from 'gsap';

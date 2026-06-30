@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight, Clock } from 'lucide-react';
@@ -248,7 +248,7 @@ export default function BlogSection() {
     return () => ctx && ctx.revert();
   }, []);
 
-  const handleOpenPost = (post, id) => {
+  const handleOpenPost = (post) => {
     setSelectedPost(post);
     setIsModalOpen(true);
   };
@@ -350,7 +350,7 @@ export default function BlogSection() {
                     
                     <button 
                       ref={el => triggerRefs.current[post.id] = el}
-                      onClick={() => handleOpenPost(post, post.id)}
+                      onClick={() => handleOpenPost(post)}
                       className="flex items-center text-aquila-navy font-bold text-sm hover:text-wing-blue transition-colors group/btn"
                       aria-label={`Read article: ${post.title}`}
                     >
@@ -369,7 +369,7 @@ export default function BlogSection() {
         post={selectedPost} 
         isOpen={isModalOpen} 
         onClose={handleClosePost}
-        triggerRef={{ current: selectedPost ? triggerRefs.current[selectedPost.id] : null }}
+        triggerEl={selectedPost ? triggerRefs.current[selectedPost.id] : null}
       />
     </section>
   );

@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { X, Clock, Calendar } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 
-export default function BlogModal({ post, isOpen, onClose, triggerRef }) {
+export default function BlogModal({ post, isOpen, onClose, triggerEl }) {
   const closeButtonRef = useRef(null);
   const modalRef = useRef(null);
 
@@ -17,8 +17,8 @@ export default function BlogModal({ post, isOpen, onClose, triggerRef }) {
       }, 50);
     } else {
       document.body.style.overflow = '';
-      if (triggerRef && triggerRef.current) {
-        triggerRef.current.focus();
+      if (triggerEl) {
+        triggerEl.focus();
       }
     }
 
@@ -30,7 +30,7 @@ export default function BlogModal({ post, isOpen, onClose, triggerRef }) {
       document.body.style.overflow = '';
       window.removeEventListener('keydown', handleEscape);
     };
-  }, [isOpen, onClose, triggerRef]);
+  }, [isOpen, onClose, triggerEl]);
 
   if (!post) return null;
 
