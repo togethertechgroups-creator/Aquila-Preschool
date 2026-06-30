@@ -13,7 +13,7 @@ const galleryMap = import.meta.glob('../assets/gallery/*.{jpeg,jpg,png,mp4}', { 
 const aquilaGalleryMap = import.meta.glob('../assets/aquila-gallery/*.{jpeg,jpg,png,mp4}', { eager: true, import: 'default' });
 const rootMap = import.meta.glob('../assets/*.{jpeg,jpg,png,mp4}', { eager: true, import: 'default' });
 
-const mapToObjects = (mapObj, category) => Object.values(mapObj).map(src => ({ src, category }));
+const mapToObjects = (mapObj, category) => Object.entries(mapObj).map(([path, src]) => ({ path, src, category }));
 
 const EXCLUDED_FILES = [
   'panda activity.png',
@@ -48,8 +48,8 @@ const imagesData = [
   ...mapToObjects(aquilaGalleryMap, 'Campus'),
   ...mapToObjects(rootMap, 'Campus'),
 ].filter(item => {
-  const srcStr = item.src || '';
-  return !EXCLUDED_FILES.some(excluded => srcStr.includes(excluded));
+  const pathStr = item.path || '';
+  return !EXCLUDED_FILES.some(excluded => pathStr.includes(excluded));
 });
 
 const isVideo = (src) => src && src.endsWith('.mp4');
