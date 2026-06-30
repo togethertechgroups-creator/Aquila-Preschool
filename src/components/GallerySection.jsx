@@ -13,7 +13,29 @@ const galleryMap = import.meta.glob('../assets/gallery/*.{jpeg,jpg,png,mp4}', { 
 const aquilaGalleryMap = import.meta.glob('../assets/aquila-gallery/*.{jpeg,jpg,png,mp4}', { eager: true, import: 'default' });
 const rootMap = import.meta.glob('../assets/*.{jpeg,jpg,png,mp4}', { eager: true, import: 'default' });
 
-const mapToObjects = (mapObj, category) => Object.entries(mapObj).map(([path, src]) => ({ path, src, category }));
+const mapToObjects = (mapObj, category) => Object.entries(mapObj).map(([path, src]) => {
+  const isAcademicOverride = [
+    'WhatsApp Image 2026-05-16 at 11.56.11 AM.jpeg',
+    'WhatsApp Image 2026-05-16 at 11.56.12 AM (1).jpeg',
+    'WhatsApp Image 2026-05-16 at 11.56.12 AM.jpeg',
+    'WhatsApp Image 2026-05-16 at 11.56.13 AM (1).jpeg'
+  ].some(file => path.includes(file));
+
+  const isDrawingOverride = [
+    'WhatsApp Image 2026-06-04 at 12.22.02 PM.jpeg',
+    'WhatsApp Image 2026-06-04 at 12.22.03 PM.jpeg'
+  ].some(file => path.includes(file));
+
+  let finalCategory = category;
+  if (isAcademicOverride) finalCategory = 'Academic';
+  else if (isDrawingOverride) finalCategory = 'Drawing';
+
+  return {
+    path,
+    src,
+    category: finalCategory
+  };
+});
 
 const EXCLUDED_FILES = [
   'panda activity.png',
@@ -35,7 +57,10 @@ const EXCLUDED_FILES = [
   'WhatsApp Image 2026-06-04 at 12.24.50 PM (2).jpeg',
   'WhatsApp Image 2026-06-04 at 12.24.50 PM.jpeg',
   'WhatsApp Image 2026-06-04 at 12.24.51 PM (1).jpeg',
-  'WhatsApp Image 2026-06-04 at 12.24.51 PM (2).jpeg'
+  'WhatsApp Image 2026-06-04 at 12.24.51 PM (2).jpeg',
+  'WhatsApp Image 2026-05-16 at 11.56.13 AM.jpeg',
+  'WhatsApp Image 2026-05-16 at 11.56.14 AM (1).jpeg',
+  'WhatsApp Image 2026-05-16 at 11.56.14 AM.jpeg'
 ];
 
 const imagesData = [
