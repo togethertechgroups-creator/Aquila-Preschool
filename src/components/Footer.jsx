@@ -115,7 +115,7 @@ export default function Footer() {
                 <span className="mr-2">📍</span>
                 <span>
                   <a 
-                    href="https://www.google.com/maps/place/AQUILA+MONTESSORI+PRE-SCHOOL/@12.8932059,80.1796102,17z/data=!3m1!4b1!4m6!3m5!1s0x3a52592133336bf1:0xf1d7c6027bb1bcc5!8m2!3d12.8932059!4d80.1821851" 
+                    href="https://maps.app.goo.gl/WCt3nDQ1Nu6GcSgn6" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="hover:text-wing-orange transition-colors cursor-pointer"
