@@ -6,7 +6,7 @@ import { ChevronLeft, ChevronRight, X, LayoutGrid, Sun, PartyPopper, GraduationC
 // Import all media dynamically using Vite's import.meta.glob
 const scImagesMap = import.meta.glob('../assets/summer camp/*.{jpeg,jpg,png,mp4}', { eager: true, import: 'default' });
 const celImagesMap = import.meta.glob('../assets/celebration/*.{jpeg,jpg,png,mp4}', { eager: true, import: 'default' });
-const ttImagesMap = import.meta.glob('../assets/teacher training/*.{jpeg,jpg,png,mp4}', { eager: true, import: 'default' });
+const ttImagesMap = import.meta.glob('../assets/teacher training/**/*.{jpeg,jpg,png,mp4}', { eager: true, import: 'default' });
 const drImagesMap = import.meta.glob('../assets/drawing/*.{jpeg,jpg,png,mp4}', { eager: true, import: 'default' });
 const acImagesMap = import.meta.glob('../assets/acadamic/*.{jpeg,jpg,png,mp4}', { eager: true, import: 'default' });
 const galleryMap = import.meta.glob('../assets/gallery/*.{jpeg,jpg,png,mp4}', { eager: true, import: 'default' });

@@ -1,8 +1,13 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { BookOpen, Award, Users, Check, Sparkles, ArrowRight, X } from 'lucide-react';
+import { BookOpen, Award, Users, Check, Sparkles, ArrowRight, X, ChevronLeft, ChevronRight, Images, ZoomIn } from 'lucide-react';
 import teacherTrainingImg from '../assets/teacher_training.png';
+
+// Import all teacher training images dynamically (including New folder)
+const ttImagesMap = import.meta.glob('../assets/teacher training/**/*.{jpeg,jpg,png,mp4}', { eager: true, import: 'default' });
+const loadedTTImages = Object.values(ttImagesMap);
+const allTrainingImages = [teacherTrainingImg, ...loadedTTImages];
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -10,6 +15,9 @@ export default function TeacherTrainingSection() {
   const containerRef = useRef(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLearnMoreOpen, setIsLearnMoreOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isGalleryModalOpen, setIsGalleryModalOpen] = useState(false);
+  const [galleryPhotoIndex, setGalleryPhotoIndex] = useState(null);
 
   useEffect(() => {
     let ctx;
@@ -43,6 +51,32 @@ export default function TeacherTrainingSection() {
     }
     return () => ctx && ctx.revert();
   }, []);
+
+  const handleNextPhoto = useCallback(() => {
+    if (galleryPhotoIndex !== null) {
+      setGalleryPhotoIndex((prev) => (prev + 1) % allTrainingImages.length);
+    }
+  }, [allTrainingImages.length, galleryPhotoIndex]);
+
+  const handlePrevPhoto = useCallback(() => {
+    if (galleryPhotoIndex !== null) {
+      setGalleryPhotoIndex((prev) => (prev - 1 + allTrainingImages.length) % allTrainingImages.length);
+    }
+  }, [allTrainingImages.length, galleryPhotoIndex]);
+
+  // Keyboard navigation for Lightbox
+  useEffect(() => {
+    if (galleryPhotoIndex === null) return;
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setGalleryPhotoIndex(null);
+      if (e.key === 'ArrowRight') handleNextPhoto();
+      if (e.key === 'ArrowLeft') handlePrevPhoto();
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [galleryPhotoIndex, handleNextPhoto, handlePrevPhoto]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -124,25 +158,82 @@ export default function TeacherTrainingSection() {
               >
                 Learn More
               </button>
+              <button
+                onClick={() => setIsGalleryModalOpen(true)}
+                className="inline-flex items-center space-x-2 px-6 py-3 rounded-full font-heading font-bold text-aquila-navy bg-white border-2 border-gray-200 hover:border-wing-blue hover:text-wing-blue shadow-sm hover:shadow-md transition-all hover-wiggle"
+              >
+                <Images size={18} />
+                <span>Training Photos ({allTrainingImages.length})</span>
+              </button>
             </div>
           </div>
 
-          {/* Right: Image */}
+          {/* Right: Interactive Image & Slideshow */}
           <div className="lg:col-span-5 training-image order-1 lg:order-2">
             <div className="relative">
               {/* Background decorative frame */}
               <div className="absolute inset-0 bg-gradient-to-br from-wing-orange to-wing-yellow rounded-[3rem] rotate-3 scale-95 opacity-20"></div>
               
               <div className="relative bg-white p-4 rounded-[3rem] shadow-xl border border-gray-100 -rotate-2 hover:rotate-0 transition-transform duration-500">
-                <img 
-                  src={teacherTrainingImg} 
-                  alt="Montessori Teacher Training" 
-                  className="w-[90%] mx-auto h-auto max-h-[450px] rounded-[2rem] object-contain"
-                />
+                <div className="relative overflow-hidden rounded-[2rem] aspect-[4/3] bg-gray-50 flex items-center justify-center group">
+                  <img 
+                    src={allTrainingImages[currentImageIndex]} 
+                    alt={`Montessori Teacher Training Photo ${currentImageIndex + 1}`} 
+                    className="w-full h-full object-cover rounded-[2rem] transition-transform duration-500 group-hover:scale-105 cursor-pointer"
+                    onClick={() => setGalleryPhotoIndex(currentImageIndex)}
+                  />
+                  
+                  {/* Prev / Next Controls */}
+                  {allTrainingImages.length > 1 && (
+                    <>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setCurrentImageIndex((prev) => (prev - 1 + allTrainingImages.length) % allTrainingImages.length);
+                        }}
+                        className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/75 text-white p-2 rounded-full backdrop-blur-sm transition-all shadow-md"
+                        aria-label="Previous training image"
+                      >
+                        <ChevronLeft size={20} />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setCurrentImageIndex((prev) => (prev + 1) % allTrainingImages.length);
+                        }}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/75 text-white p-2 rounded-full backdrop-blur-sm transition-all shadow-md"
+                        aria-label="Next training image"
+                      >
+                        <ChevronRight size={20} />
+                      </button>
+                    </>
+                  )}
+
+                  {/* Zoom indicator button */}
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setGalleryPhotoIndex(currentImageIndex);
+                    }}
+                    className="absolute top-3 right-3 bg-black/40 hover:bg-black/70 text-white p-2 rounded-xl backdrop-blur-sm transition-all shadow-md flex items-center gap-1.5 text-xs font-heading font-bold"
+                  >
+                    <ZoomIn size={16} />
+                    <span>Expand</span>
+                  </button>
+
+                  {/* Photo Counter Badge */}
+                  <div className="absolute bottom-3 left-3 bg-aquila-navy/85 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-heading font-semibold shadow-md flex items-center gap-1.5">
+                    <Images size={13} />
+                    <span>{currentImageIndex + 1} / {allTrainingImages.length}</span>
+                  </div>
+                </div>
                 
                 {/* Floating Badge */}
-                <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-lg border border-gray-50 flex items-center space-x-3">
-                  <div className="w-12 h-12 bg-wing-green rounded-xl flex items-center justify-center text-white">
+                <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-lg border border-gray-50 flex items-center space-x-3 z-10">
+                  <div className="w-12 h-12 bg-wing-green rounded-xl flex items-center justify-center text-white shrink-0">
                     <Sparkles size={24} />
                   </div>
                   <div>
@@ -150,12 +241,101 @@ export default function TeacherTrainingSection() {
                     <div className="text-xs text-text-muted">Limited seats available</div>
                   </div>
                 </div>
+
+                {/* View All Photos trigger */}
+                <button
+                  type="button"
+                  onClick={() => setIsGalleryModalOpen(true)}
+                  className="mt-4 w-full py-2.5 bg-wing-blue/10 hover:bg-wing-blue/20 text-wing-blue font-heading font-bold rounded-2xl transition-colors flex items-center justify-center gap-2 text-sm"
+                >
+                  <Images size={16} />
+                  <span>View All {allTrainingImages.length} Training Photos</span>
+                </button>
               </div>
             </div>
           </div>
 
         </div>
       </div>
+
+      {/* Full Teacher Training Photo Gallery Grid Modal */}
+      {isGalleryModalOpen && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-[2rem] w-full max-w-5xl relative shadow-2xl border-2 border-wing-blue/20 max-h-[90vh] flex flex-col overflow-hidden">
+            <div className="p-6 border-b border-gray-100 flex items-center justify-between bg-gradient-to-r from-wing-blue/5 to-transparent">
+              <div>
+                <h3 className="text-2xl font-display text-aquila-navy">Teacher Training Photo Gallery</h3>
+                <p className="text-text-muted text-sm font-heading">Showing all {allTrainingImages.length} photos from our Montessori training sessions</p>
+              </div>
+              <button 
+                onClick={() => setIsGalleryModalOpen(false)}
+                className="text-text-muted hover:text-aquila-navy transition-colors bg-gray-100 hover:bg-gray-200 rounded-full p-2 shadow-sm"
+              >
+                <X size={24} />
+              </button>
+            </div>
+            
+            <div className="p-6 overflow-y-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+              {allTrainingImages.map((src, index) => (
+                <div 
+                  key={index}
+                  onClick={() => setGalleryPhotoIndex(index)}
+                  className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-gray-100 cursor-pointer border-2 border-gray-100 hover:border-wing-blue hover:shadow-lg transition-all duration-300 group"
+                >
+                  <img 
+                    src={src} 
+                    alt={`Training session ${index + 1}`} 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
+                    <ZoomIn size={24} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Lightbox Zoom Modal */}
+      {galleryPhotoIndex !== null && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-aquila-navy/90 backdrop-blur-md transition-all duration-300">
+          <div className="absolute inset-0 cursor-default" onClick={() => setGalleryPhotoIndex(null)}></div>
+
+          <button
+            onClick={() => setGalleryPhotoIndex(null)}
+            className="absolute top-6 right-6 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 p-3 rounded-full transition-all z-50"
+          >
+            <X size={28} />
+          </button>
+
+          <button
+            onClick={handlePrevPhoto}
+            className="absolute left-6 top-1/2 -translate-y-1/2 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 p-3 rounded-full transition-all z-50 hidden sm:block"
+          >
+            <ChevronLeft size={32} />
+          </button>
+
+          <div className="relative max-w-[90vw] max-h-[80vh] flex flex-col items-center justify-center z-40 select-none">
+            <img 
+              src={allTrainingImages[galleryPhotoIndex]} 
+              alt={`Training photo ${galleryPhotoIndex + 1}`} 
+              className="max-w-full max-h-[80vh] object-contain rounded-2xl shadow-2xl border-4 border-white/10"
+            />
+            <div className="mt-4 text-white/80 font-heading text-sm bg-black/35 px-4 py-1.5 rounded-full backdrop-blur-sm select-none">
+              Photo {galleryPhotoIndex + 1} of {allTrainingImages.length}
+            </div>
+          </div>
+
+          <button
+            onClick={handleNextPhoto}
+            className="absolute right-6 top-1/2 -translate-y-1/2 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 p-3 rounded-full transition-all z-50 hidden sm:block"
+          >
+            <ChevronRight size={32} />
+          </button>
+        </div>
+      )}
 
       {/* Learn More Modal */}
       {isLearnMoreOpen && (
