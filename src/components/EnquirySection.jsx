@@ -72,7 +72,7 @@ export default function EnquirySection() {
                 <h4 className="font-heading font-bold text-lg mb-1 text-aquila-navy">Address</h4>
                 <p className="font-semibold text-aquila-navy leading-relaxed">
                   <a 
-                    href="https://maps.app.goo.gl/WCt3nDQ1Nu6GcSgn6" 
+                    href="https://maps.app.goo.gl/SoXZLfvYRA1zWRgW7?g_st=iw" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="hover:text-wing-blue transition-colors cursor-pointer"
@@ -84,7 +84,7 @@ export default function EnquirySection() {
                   </a>
                 </p>
                 <a 
-                  href="https://maps.app.goo.gl/WCt3nDQ1Nu6GcSgn6" 
+                  href="https://maps.app.goo.gl/SoXZLfvYRA1zWRgW7?g_st=iw" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="inline-flex items-center space-x-2 mt-3 text-sm font-heading font-bold text-wing-blue hover:text-aquila-navy transition-colors group"
@@ -135,14 +135,14 @@ export default function EnquirySection() {
 
             <div className="rounded-xl overflow-hidden shadow-lg h-64 border border-white/10">
               <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.9668478440536!2d80.17202167576579!3d12.89487121768822!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525942b3ba076b%3A0x1684a1b4a6eaa758!2sBanda%20-%20The%20Activity%20Hub!5e0!3m2!1sen!2sin!4v1740989000000!5m2!1sen!2sin" 
+                src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3886.9668478440536!2d80.1720434!3d12.894726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTLCsDUzJzQxLjAiTiA4MMKwMTAnMjguNiJF!5e0!3m2!1sen!2sin!4v1740989000000!5m2!1sen!2sin" 
                 width="100%" 
                 height="100%" 
                 style={{ border: 0 }} 
                 allowFullScreen="" 
                 loading="lazy" 
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Banda - The Activity Hub Location"
+                title="Aquila Montessori Pre-School Location"
               ></iframe>
             </div>
           </div>
