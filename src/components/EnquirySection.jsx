@@ -72,7 +72,7 @@ export default function EnquirySection() {
                 <h4 className="font-heading font-bold text-lg mb-1 text-aquila-navy">Address</h4>
                 <p className="font-semibold text-aquila-navy leading-relaxed">
                   <a 
-                    href="https://maps.app.goo.gl/SoXZLfvYRA1zWRgW7?g_st=iw" 
+                    href="https://maps.app.goo.gl/Sd9Z1UU9BFsJXwcK9?g_st=iw" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="hover:text-wing-blue transition-colors cursor-pointer"
@@ -84,7 +84,7 @@ export default function EnquirySection() {
                   </a>
                 </p>
                 <a 
-                  href="https://maps.app.goo.gl/SoXZLfvYRA1zWRgW7?g_st=iw" 
+                  href="https://maps.app.goo.gl/Sd9Z1UU9BFsJXwcK9?g_st=iw" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="inline-flex items-center space-x-2 mt-3 text-sm font-heading font-bold text-wing-blue hover:text-aquila-navy transition-colors group"

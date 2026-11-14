@@ -115,7 +115,7 @@ export default function Footer() {
                 <span className="mr-2">📍</span>
                 <span>
                   <a 
-                    href="https://maps.app.goo.gl/SoXZLfvYRA1zWRgW7?g_st=iw" 
+                    href="https://maps.app.goo.gl/Sd9Z1UU9BFsJXwcK9?g_st=iw" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="hover:text-wing-orange transition-colors cursor-pointer"
