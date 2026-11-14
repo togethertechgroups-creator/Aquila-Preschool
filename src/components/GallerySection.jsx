@@ -77,9 +77,9 @@ const imagesData = [
   return !EXCLUDED_FILES.some(excluded => pathStr.includes(excluded));
 });
 
-const isVideo = (src) => src && src.endsWith('.mp4');
+const isVideo = (src) => Boolean(src && (src.endsWith('.mp4') || /\.mp4(\?.*)?$/i.test(src)));
 
-const renderMedia = (src, alt, className) => {
+const renderMedia = (src, alt, className, isLightbox = false) => {
   if (isVideo(src)) {
     return (
       <video
@@ -87,7 +87,8 @@ const renderMedia = (src, alt, className) => {
         title={alt}
         className={className}
         autoPlay
-        muted
+        muted={!isLightbox}
+        controls={isLightbox}
         loop
         playsInline
       />
@@ -277,7 +278,7 @@ export default function GallerySection() {
 
           {/* Center Content */}
           <div className="relative max-w-[90vw] max-h-[80vh] flex flex-col items-center justify-center z-40 select-none">
-            {renderMedia(filteredImages[activePhotoIndex]?.src, `Aquila Gallery Preview`, "max-w-full max-h-[80vh] object-contain rounded-2xl shadow-2xl border-4 border-white/10")}
+            {renderMedia(filteredImages[activePhotoIndex]?.src, `Aquila Gallery Preview`, "max-w-full max-h-[80vh] object-contain rounded-2xl shadow-2xl border-4 border-white/10", true)}
             <div className="mt-4 text-white/80 font-heading text-sm bg-black/35 px-4 py-1.5 rounded-full backdrop-blur-sm select-none flex items-center space-x-2">
               <span>{activeCategory !== 'All' ? activeCategory : ''} Photo {activePhotoIndex + 1} of {filteredImages.length}</span>
             </div>
